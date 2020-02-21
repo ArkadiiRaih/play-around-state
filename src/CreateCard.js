@@ -2,9 +2,14 @@ import React, { useState } from "react";
 import styled from "@emotion/styled";
 
 const CreateCardForm = styled.form``;
-const CreateCardTitle = styled.input``;
+const CreateCardTitle = styled.input`
+  margin-bottom: 0.5em;
+`;
 const CreateCardDescription = styled.input``;
-const CreateCardSubmit = styled.input``;
+const CreateCardSubmit = styled.input`
+  margin-bottom: 0.5em;
+  background-color: #bbb;
+`;
 
 function CreateCard({ onCreateCard }) {
   const [cardData, setCardData] = useState({
