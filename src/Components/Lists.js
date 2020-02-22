@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
-import List from "./List";
+import ListContainer from "../containers/ListContainer";
 
 const ListsSection = styled.section`
   display: flex;
@@ -11,8 +11,8 @@ const ListsSection = styled.section`
 function Lists({ lists = [] }) {
   return (
     <ListsSection>
-      {lists.map(list => (
-        <List />
+      {lists.map(listId => (
+        <ListContainer key={listId} listId={listId} />
       ))}
     </ListsSection>
   );

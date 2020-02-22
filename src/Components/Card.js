@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
-import MoveCardToList from "./MoveCardToList";
-import { colors, darken, boxShadow } from "./style";
+import { colors, darken, boxShadow, buttonStyle } from "../style";
+import MoveCardToListContainer from "../containers/MoveCardToListContainer";
 
 const CardArticle = styled.article`
   background-color: ${colors.cardColor};
@@ -18,12 +18,19 @@ const CardDescription = styled.div`
   margin: 1em 0;
 `;
 
-const Card = ({ card = {}, listId }) => {
+const CardRemove = styled.button`
+  ${buttonStyle(colors.dangerColor)}
+`;
+
+const Card = ({ card = {}, listId, removeCard = () => {} }) => {
   return (
     <CardArticle>
       <h3>{card.title}</h3>
       <CardDescription>{card.description}</CardDescription>
-      <MoveCardToList cardId={card.id} listId={listId} />
+      <MoveCardToListContainer cardId={card.id} listId={listId} />
+      <CardRemove onClick={() => removeCard(card.id, listId)}>
+        Remove Card
+      </CardRemove>
     </CardArticle>
   );
 };

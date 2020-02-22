@@ -1,7 +1,7 @@
 import React from "react";
 import md5 from "md5";
 import styled from "@emotion/styled";
-import { colors } from "./style";
+import { colors } from "../style";
 
 const createProfileImageUrl = ({ email }) => {
   const hash = md5(email.trim());
@@ -16,6 +16,7 @@ const UserArticle = styled.article`
   padding: 0.5em;
   width: 100%;
   text-align: center;
+  overflow: hidden;
   img {
     max-height: 100%;
     max-width: 100%;

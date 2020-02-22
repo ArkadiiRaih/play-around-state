@@ -8,10 +8,10 @@ const CreateCardTitle = styled.input`
 const CreateCardDescription = styled.input``;
 const CreateCardSubmit = styled.input`
   margin-bottom: 0.5em;
-  background-color: #bbb;
+  background-color: #bbbbbb;
 `;
 
-function CreateCard({ onCreateCard }) {
+function CreateCard({ createCard, listId }) {
   const [cardData, setCardData] = useState({
     title: "",
     description: ""
@@ -36,8 +36,8 @@ function CreateCard({ onCreateCard }) {
 
     if (isInvalid()) return;
 
-    if (onCreateCard) {
-      onCreateCard(cardData);
+    if (createCard) {
+      createCard(listId, cardData);
     }
 
     setCardData({

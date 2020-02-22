@@ -3,12 +3,12 @@ import styled from "@emotion/styled";
 
 const CreateUserForm = styled.form``;
 
-function CreateUser({ onCreateUser }) {
+function CreateUser({ createUser }) {
   const [userData, setUserData] = useState({ name: "", email: "" });
 
   const handleSubmit = event => {
     event.preventDefault();
-    if (onCreateUser) onCreateUser(userData);
+    if (createUser) createUser(userData);
     setUserData({ name: "", email: "" });
   };
   const handleChange = event => {

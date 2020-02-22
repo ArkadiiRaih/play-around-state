@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "@emotion/styled";
-import { colors, boxShadow } from "./style";
+import { colors, boxShadow } from "../style";
 
 const CreateListForm = styled.form`
   background-color: ${colors.listColor};
@@ -23,7 +23,7 @@ const CreateListSubmit = styled.input`
   flex: 1;
 `;
 
-function CreateList({ onCreateList }) {
+function CreateList({ createList }) {
   const [title, setTitle] = useState("");
 
   const isValid = () => {
@@ -41,8 +41,8 @@ function CreateList({ onCreateList }) {
 
   const handleSubmit = event => {
     event.preventDefault();
-    if (onCreateList) {
-      onCreateList(title);
+    if (createList) {
+      createList({ title });
     }
     setTitle("");
   };

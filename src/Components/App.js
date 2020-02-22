@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "@emotion/styled";
-import Users from "./Users";
-import List from "./List";
-import CreateList from "./CreateList";
 import { Global } from "@emotion/core";
-import { globalStyles } from "./style";
+import { globalStyles } from "../style";
+import ListsContainer from "../containers/ListsContainer";
+import CreateListContainer from "../containers/CreateListContainer";
+import UsersContainer from "../containers/UsersContainer";
 
 const Main = styled.main`
   display: flex;
@@ -16,10 +16,10 @@ function App() {
     <>
       <Global styles={globalStyles} />
       <Main>
-        <Users></Users>
+        <UsersContainer />
         <section>
-          <CreateList />
-          <List />
+          <CreateListContainer />
+          <ListsContainer />
         </section>
       </Main>
     </>

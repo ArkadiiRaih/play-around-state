@@ -9,7 +9,8 @@ export const colors = {
   cardColor: `${lighten("#fdf0d5", 5)}`,
   dangerColor: "#f0544f",
   controlColor: "#197278",
-  fontColor: "#283d3b"
+  fontColor: "#283d3b",
+  white: "#ffffff"
 };
 
 export const boxShadow = css`
@@ -80,12 +81,14 @@ export const globalStyles = css`
   option {
     padding: 1em;
   }
+
+  input {
+    ${inputStyle(colors.white)}
+  }
+
   button,
   input[type="submit"] {
     ${buttonStyle(colors.buttonColor)};
-    &.danger {
-      ${buttonStyle(colors.dangerColor)};
-    }
   }
 `;
 
