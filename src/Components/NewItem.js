@@ -1,39 +1,56 @@
-import React, { useState } from "react";
-import styled from "@emotion/styled";
+import React, { Component } from "react";
+import { inject } from "mobx-react";
+import { css } from "@emotion/core";
 
-const NewItemForm = styled.form`
-  display: flex;
-`;
-const NewItemInput = styled.input`
-  width: 100%;
-`;
-const NewItemSubmit = styled.input``;
+@inject("itemList")
+class NewItem extends Component {
+  state = { value: "" };
 
-function NewItem({ onSubmit }) {
-  const [value, setValue] = useState("");
-
-  const handleChange = e => {
-    // Do something when the state of this input changes.
-    setValue(e.target.value);
+  handleChange = event => {
+    const { value } = event.target;
+    this.setState({ value });
   };
 
-  const handleSubmit = e => {
-    e.preventDefault();
+  handleSubmit = event => {
+    const { value } = this.state;
+    const { itemList } = this.props;
 
-    console.log({ onSubmit, value });
+    event.preventDefault();
+    itemList.addItem(value);
 
-    if (onSubmit) onSubmit(value);
-
-    // Do something when a new value is submitted.
-    setValue("");
-    // Reset the state of the component.
+    this.setState({ value: "" });
   };
-  return (
-    <NewItemForm onSubmit={handleSubmit}>
-      <NewItemInput type="text" value={value} onChange={handleChange} />
-      <NewItemSubmit className="button" type="submit" />
-    </NewItemForm>
-  );
+
+  render() {
+    const { value } = this.state;
+
+    return (
+      <form
+        css={css`
+          display: flex;
+        `}
+        onSubmit={this.handleSubmit}
+      >
+        <input
+          css={css`
+            width: 100%;
+          `}
+          type="text"
+          value={value}
+          onChange={this.handleChange}
+          placeholder="item name"
+        />
+        <button
+          css={css`
+            width: 100px;
+          `}
+          type="submit"
+        >
+          Add Item
+        </button>
+      </form>
+    );
+  }
 }
 
 export default NewItem;

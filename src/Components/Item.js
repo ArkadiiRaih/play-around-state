@@ -22,12 +22,12 @@ function Item({ item }) {
         <input
           type="checkbox"
           checked={item.packed}
-          onChange={() => {}}
+          onChange={item.toggle}
           id={item.id}
         />
         {item.value}
       </label>
-      <ItemRemove onClick={() => {}}>Remove</ItemRemove>
+      <ItemRemove onClick={item.remove}>Remove</ItemRemove>
     </ItemArticle>
   );
 }

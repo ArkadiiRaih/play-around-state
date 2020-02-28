@@ -16,7 +16,13 @@ function Filter({ searchTerm, onChange }) {
     [onChange]
   );
 
-  return <ItemsSearchTerm value={searchTerm} onChange={handleChange} />;
+  return (
+    <ItemsSearchTerm
+      value={searchTerm}
+      onChange={handleChange}
+      placeholder="Seacrch..."
+    />
+  );
 }
 
 export default Filter;
