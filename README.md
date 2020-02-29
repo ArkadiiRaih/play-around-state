@@ -16,8 +16,8 @@ that its code to be executed later.
      return dispatch >= {
        Api.getAll().then(users => {
          dispatch({
-           type: UPDATE_ALL_ITEMS,
-           items,
+           type: UPDATE_ALL_USERS,
+           users,
          });
        });
      };
