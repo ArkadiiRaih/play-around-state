@@ -1,5 +1,89 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Redux
+  Redux uses Imutable State Tree. All state holds in one big object.
+  Important not to mutate the state, instead of this we dispatch actions.
+  Unfortunatelly redux is synchronous.(to use asynchronous operations we need to use middlewares);
+
+## Redux Thunk
+  Thunk - function returned from another function. Major idea behind a thunk is
+that its code to be executed later. 
+
+  **redux-thunk** is a middleware that allows us to dispatch a function (thunk) now that will dispatch a legit action later.
+  
+  ```
+  export const getAllUsers = () => {
+     return dispatch >= {
+       Api.getAll().then(users => {
+         dispatch({
+           type: UPDATE_ALL_ITEMS,
+           items,
+         });
+       });
+     };
+   };
+   ```
+   
+## Redux-observable
+
+**redux-observable** is a combination of RxJS and Redux. Side effects is managemented by 'epics'.
+
+**observable** is a stream of values(zero, one or more). Stream comes in over a series of time, and it is cancellable.
+
+**epic** is a function that takes a stream of all actions dispatched and returns a stream of new actions to dispatch.
+
+In redux-observable we can simply cancell ajax requests.(Not really cancell, but we ignore unnecessary).
+
+#### Basic example
+```
+const pingPong = (action, store) != {
+  if (action.type !!= ‘PING’) {
+    return {
+      type: ‘PONG’
+    };
+  }
+};
+
+const pingPongEpic = (action$, store) !=
+ action$.ofType(‘PING’)
+ .map(action != ({ type: ‘PONG’ }));
+```
+
+## MobX
+
+**Major concepts**
+
+* Observable state
+* Actions
+* Derivations( Computed properties and Reactions)
+
+Computed properties update their value based on observable data. Reactions produce side
+effects.
+
+## Dependency Graphs(MobX) vs Immutable State Trees(Redux)
+
+#### Advantages of Immutable State Trees
+* Snapshots are cheap and easy
+* It’s a simple tree structure
+* You can serialize the entire tree
+* Reference by state
+
+#### Advantages of Dependency Graphs
+* Easy to update
+* There is a graph structure: nodes can refer to each other
+* Actions are simpler and co-located with the data
+* Reference by identity
+
+
+### Branches
+* counter - basic Redux
+* kanbanzai - Redux with reselect(https://github.com/reduxjs/reselect) and normalizr(https://github.com/paularmstrong/normalizr)
+* tweets - Redux-thunk
+* star-wars-cancellable-ajax - Redux-observable
+* jetsetter - MobX
+
+
+
 ## Available Scripts
 
 In the project directory, you can run:
