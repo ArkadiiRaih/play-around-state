@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./App.css";
 import { Main, Controls, Count, Control } from "./components";
 
@@ -31,6 +31,14 @@ function useLocalStorage(initialState, key) {
 function App() {
   const [count, setCount] = useLocalStorage(0, "count");
 
+  const counterRef = useRef();
+
+  let message = "";
+  if (counterRef.current < count) message = "Higher";
+  if (counterRef.current > count) message = "Lower";
+
+  counterRef.current = count;
+
   const increment = () => {
     setCount(c => c + 1);
   };
@@ -50,6 +58,7 @@ function App() {
   return (
     <Main className="counter">
       <Count className="count">{count}</Count>
+      <p>{message}</p>
       <Controls className="controls">
         <Control onClick={increment}>Increment</Control>
         <Control onClick={decrement}>Decrement</Control>
