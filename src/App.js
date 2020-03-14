@@ -1,10 +1,36 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import { Main, Controls, Count, Control } from "./components";
-import { connect } from "react-redux";
-import { increment, decrement, reset } from "./redux";
 
-function App({ count, increment, decrement, reset }) {
+function getStateFromLocalStorage(state) {
+  const storage = localStorage.getItem("counterStorage");
+  if (!storage) return 0;
+  return JSON.parse(storage).count;
+}
+
+function App() {
+  const [count, setCount] = useState(getStateFromLocalStorage());
+
+  const increment = () => {
+    setCount(c => c + 1);
+  };
+
+  const decrement = () => {
+    setCount(c => c - 1);
+  };
+
+  const reset = () => {
+    setCount(c => 0);
+  };
+
+  useEffect(() => {
+    document.title = `Counter: ${count}`;
+  }, [count]);
+
+  useEffect(() => {
+    localStorage.setItem("counterStorage", JSON.stringify({ count }));
+  }, [count]);
+
   return (
     <Main className="counter">
       <Count className="count">{count}</Count>
@@ -17,11 +43,4 @@ function App({ count, increment, decrement, reset }) {
   );
 }
 
-const mapStateToProps = state => state;
-const mapDispatchToProps = {
-  increment,
-  decrement,
-  reset
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;
