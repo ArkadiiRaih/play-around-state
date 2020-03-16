@@ -11,6 +11,7 @@ const GRUDGE_FORGIVE = "GRUDGE_FORGIVE";
  * We add context, so we can grab all passing properties from component that use useContext or wrapped in context consumer.
  * But we lose perfomance. React.memo becomes useless now, because we do not pass parameters directly.
  * Instead we have another benefit - Component tree is much cleaner than before.
+ * Also now it's harder to test application.
  */
 
 const addGrudge = ({ name, reason }) => {
