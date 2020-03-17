@@ -9,7 +9,7 @@ function NewGrudge() {
 
   function onSubmit(e) {
     e.preventDefault();
-    onAdd(name, reason);
+    onAdd({ name, reason });
     setName("");
     setReason("");
   }
