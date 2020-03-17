@@ -7,7 +7,7 @@ import { css, jsx } from "@emotion/core";
 import { GrudgeContext } from "./GrudgeContext";
 
 function App() {
-  const { onUndo, onRedo, isPast, isFuture } = useContext(GrudgeContext);
+  const { undo, redo, isPast, isFuture } = useContext(GrudgeContext);
   return (
     <div
       css={css`
@@ -25,10 +25,10 @@ function App() {
           justify-content: space-between;
         `}
       >
-        <button onClick={onUndo} disabled={!isPast}>
+        <button onClick={undo} disabled={!isPast}>
           undo
         </button>
-        <button onClick={onRedo} disabled={!isFuture}>
+        <button onClick={redo} disabled={!isFuture}>
           redo
         </button>
       </div>
